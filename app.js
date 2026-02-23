@@ -2,20 +2,60 @@ const ADMIN_EMAIL = "wsdmpresh@gmail.com";
 const ADMIN_PASS = "Wisdomfx22a";
 
 const countryData = {
-    "USA": [38.90, -77.03], "UK": [51.50, -0.12], "Nigeria": [9.07, 7.39],
-    "Germany": [52.52, 13.40], "France": [48.85, 2.35], "India": [28.61, 77.20],
-    "China": [39.90, 116.40], "Japan": [35.67, 139.65], "Brazil": [-15.79, -47.88],
-    "Canada": [45.42, -75.69], "Australia": [-35.28, 149.13], "South Africa": [-33.92, 18.42],
-    "Russia": [55.75, 37.61], "Mexico": [19.43, -99.13], "UAE": [24.45, 54.37],
     "Afghanistan": [34.52, 69.17], "Albania": [41.32, 19.81], "Algeria": [36.75, 3.05],
-    "Argentina": [-38.41, -63.61], "Bangladesh": [23.81, 90.41], "Belgium": [50.85, 4.35],
-    "Egypt": [30.04, 31.23], "Ghana": [5.60, -0.18], "Italy": [41.90, 12.49],
-    "Kenya": [-1.29, 36.82], "Netherlands": [52.36, 4.90], "Pakistan": [33.68, 73.04],
-    "Saudi Arabia": [24.71, 46.67], "Singapore": [1.35, 103.81], "Spain": [40.41, -3.70],
-    "Turkey": [39.93, 32.85], "Vietnam": [21.02, 105.83]
+    "Andorra": [42.50, 1.52], "Angola": [-8.83, 13.23], "Antigua and Barbuda": [17.12, -61.84],
+    "Argentina": [-38.41, -63.61], "Armenia": [40.17, 44.50], "Australia": [-35.28, 149.13],
+    "Austria": [48.20, 16.37], "Azerbaijan": [40.40, 49.86], "Bahamas": [25.03, -77.39],
+    "Bahrain": [26.22, 50.58], "Bangladesh": [23.81, 90.41], "Barbados": [13.10, -59.61],
+    "Belarus": [53.90, 27.56], "Belgium": [50.85, 4.35], "Belize": [17.18, -88.49],
+    "Benin": [6.49, 2.62], "Bhutan": [27.51, 90.43], "Bolivia": [-16.29, -63.58],
+    "Bosnia and Herzegovina": [43.91, 17.67], "Botswana": [-24.62, 25.92], "Brazil": [-15.79, -47.88],
+    "Brunei": [4.53, 114.72], "Bulgaria": [42.69, 23.32], "Burkina Faso": [12.37, -1.51],
+    "Burundi": [-3.42, 29.36], "Cambodia": [11.55, 104.92], "Cameroon": [3.84, 11.50],
+    "Canada": [45.42, -75.69], "Cape Verde": [14.91, -23.50], "Central African Republic": [4.36, 18.55],
+    "Chad": [12.13, 15.05], "Chile": [-33.44, -70.66], "China": [39.90, 116.40],
+    "Colombia": [4.71, -74.07], "Comoros": [-11.70, 43.25], "Congo": [-4.26, 15.24],
+    "Costa Rica": [9.92, -84.09], "Croatia": [45.81, 15.98], "Cuba": [23.11, -82.36],
+    "Cyprus": [35.18, 33.38], "Czech Republic": [50.07, 14.43], "Denmark": [55.67, 12.56],
+    "Djibouti": [11.57, 43.15], "Dominica": [15.41, -61.37], "Dominican Republic": [18.73, -70.16],
+    "Ecuador": [-0.18, -78.46], "Egypt": [30.04, 31.23], "El Salvador": [13.69, -89.21],
+    "Equatorial Guinea": [3.75, 8.78], "Eritrea": [15.32, 38.92], "Estonia": [59.43, 24.75],
+    "Eswatini": [-26.30, 31.13], "Ethiopia": [9.00, 38.75], "Fiji": [-18.12, 178.44],
+    "Finland": [60.16, 24.93], "France": [48.85, 2.35], "Gabon": [0.41, 9.45],
+    "Gambia": [13.44, -16.57], "Georgia": [41.71, 44.82], "Germany": [52.52, 13.40],
+    "Ghana": [5.60, -0.18], "Greece": [37.98, 23.72], "Grenada": [12.05, -61.75],
+    "Guatemala": [14.63, -90.50], "Guinea": [9.64, -13.57], "Guinea-Bissau": [11.86, -15.58],
+    "Guyana": [6.80, -58.15], "Haiti": [18.59, -72.30], "Honduras": [14.07, -87.20],
+    "Hungary": [47.49, 19.04], "Iceland": [64.14, -21.94], "India": [28.61, 77.20],
+    "Indonesia": [-6.20, 106.84], "Iran": [35.68, 51.38], "Iraq": [33.31, 44.36],
+    "Ireland": [53.34, -6.26], "Israel": [31.76, 35.21], "Italy": [41.90, 12.49],
+    "Jamaica": [17.97, -76.79], "Japan": [35.67, 139.65], "Jordan": [31.94, 35.92],
+    "Kazakhstan": [51.16, 71.42], "Kenya": [-1.29, 36.82], "Kiribati": [1.33, 172.98],
+    "Kuwait": [29.37, 47.97], "Kyrgyzstan": [42.87, 74.59], "Laos": [17.97, 102.63],
+    "Latvia": [56.94, 24.10], "Lebanon": [33.89, 35.50], "Lesotho": [-29.61, 28.23],
+    "Liberia": [6.31, -10.80], "Libya": [32.88, 13.19], "Liechtenstein": [47.14, 9.52],
+    "Lithuania": [54.68, 25.27], "Luxembourg": [49.61, 6.13], "Madagascar": [-18.87, 47.50],
+    "Malawi": [-13.96, 33.77], "Malaysia": [3.13, 101.68], "Maldives": [4.17, 73.50],
+    "Mali": [12.63, -8.00], "Malta": [35.89, 14.50], "Marshall Islands": [7.11, 171.18],
+    "Mauritania": [18.07, -15.99], "Mauritius": [-20.34, 57.50], "Mexico": [19.43, -99.13],
+    "Micronesia": [6.91, 158.18], "Moldova": [47.01, 28.86], "Monaco": [43.73, 7.42],
+    "Mongolia": [47.91, 106.88], "Montenegro": [42.70, 19.37], "Morocco": [34.02, -6.84],
+    "Mozambique": [-25.96, 32.57], "Myanmar": [19.76, 96.07]
 };
 
-const countries = Object.keys(countryData).sort();
+const countries = Object.keys(countryData).concat([
+    "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria",
+    "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea",
+    "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda",
+    "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino",
+    "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone",
+    "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea",
+    "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria",
+    "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago",
+    "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "UAE", "UK", "USA", "Uruguay",
+    "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+]).sort();
+
 let shipments = {};
 let mapInterval = null;
 
@@ -101,7 +141,6 @@ function saveShipment() {
         alert('Fill all fields!');
         return;
     }
-    
     if(status === 'Stopped' && !stopReason) {
         alert('Enter stop reason!');
         return;
@@ -136,7 +175,6 @@ function saveShipment() {
         document.getElementById('generatedTracking').classList.remove('hidden');
         document.getElementById('displayGeneratedNum').textContent = trackNum;
     }
-    
     saveData();
     updateStats();
     loadShipmentsList();
@@ -225,6 +263,85 @@ function formatDate(dateStr) {
     if(!dateStr) return '-';
     return new Date(dateStr).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
 }
+
+// Add remaining country coordinates
+countryData["Namibia"] = [-22.56, 17.06];
+countryData["Nauru"] = [-0.52, 166.93];
+countryData["Nepal"] = [27.71, 85.32];
+countryData["Netherlands"] = [52.36, 4.90];
+countryData["New Zealand"] = [-41.28, 174.77];
+countryData["Nicaragua"] = [12.11, -86.23];
+countryData["Niger"] = [13.51, 2.11];
+countryData["Nigeria"] = [9.07, 7.39];
+countryData["North Korea"] = [39.03, 125.76];
+countryData["North Macedonia"] = [41.99, 21.43];
+countryData["Norway"] = [59.91, 10.75];
+countryData["Oman"] = [23.58, 58.40];
+countryData["Pakistan"] = [33.68, 73.04];
+countryData["Palau"] = [7.51, 134.58];
+countryData["Panama"] = [8.98, -79.51];
+countryData["Papua New Guinea"] = [-9.47, 147.18];
+countryData["Paraguay"] = [-25.26, -57.57];
+countryData["Peru"] = [-12.04, -77.04];
+countryData["Philippines"] = [14.59, 120.98];
+countryData["Poland"] = [52.22, 21.01];
+countryData["Portugal"] = [38.72, -9.13];
+countryData["Qatar"] = [25.28, 51.53];
+countryData["Romania"] = [44.42, 26.10];
+countryData["Russia"] = [55.75, 37.61];
+countryData["Rwanda"] = [-1.94, 30.05];
+countryData["Saint Kitts and Nevis"] = [17.35, -62.78];
+countryData["Saint Lucia"] = [14.01, -60.98];
+countryData["Saint Vincent and the Grenadines"] = [13.25, -61.20];
+countryData["Samoa"] = [-13.85, -171.75];
+countryData["San Marino"] = [43.94, 12.45];
+countryData["Sao Tome and Principe"] = [0.33, 6.73];
+countryData["Saudi Arabia"] = [24.71, 46.67];
+countryData["Senegal"] = [14.71, -17.46];
+countryData["Serbia"] = [44.78, 20.44];
+countryData["Seychelles"] = [-4.61, 55.45];
+countryData["Sierra Leone"] = [8.46, -13.26];
+countryData["Singapore"] = [1.35, 103.81];
+countryData["Slovakia"] = [48.14, 17.10];
+countryData["Slovenia"] = [46.05, 14.50];
+countryData["Solomon Islands"] = [-9.43, 159.95];
+countryData["Somalia"] = [2.04, 45.34];
+countryData["South Africa"] = [-33.92, 18.42];
+countryData["South Korea"] = [37.56, 126.97];
+countryData["South Sudan"] = [4.85, 31.58];
+countryData["Spain"] = [40.41, -3.70];
+countryData["Sri Lanka"] = [6.92, 79.86];
+countryData["Sudan"] = [15.50, 32.55];
+countryData["Suriname"] = [5.83, -55.16];
+countryData["Sweden"] = [59.32, 18.06];
+countryData["Switzerland"] = [46.94, 7.44];
+countryData["Syria"] = [33.51, 36.27];
+countryData["Taiwan"] = [25.03, 121.56];
+countryData["Tajikistan"] = [38.55, 68.78];
+countryData["Tanzania"] = [-6.79, 39.20];
+countryData["Thailand"] = [13.75, 100.50];
+countryData["Timor-Leste"] = [-8.55, 125.56];
+countryData["Togo"] = [6.13, 1.21];
+countryData["Tonga"] = [-21.13, -175.20];
+countryData["Trinidad and Tobago"] = [10.65, -61.51];
+countryData["Tunisia"] = [36.80, 10.18];
+countryData["Turkey"] = [39.93, 32.85];
+countryData["Turkmenistan"] = [37.96, 58.32];
+countryData["Tuvalu"] = [-8.51, 179.19];
+countryData["Uganda"] = [0.34, 32.58];
+countryData["Ukraine"] = [50.45, 30.52];
+countryData["UAE"] = [24.45, 54.37];
+countryData["UK"] = [51.50, -0.12];
+countryData["USA"] = [38.90, -77.03];
+countryData["Uruguay"] = [-34.90, -56.16];
+countryData["Uzbekistan"] = [41.29, 69.24];
+countryData["Vanuatu"] = [-17.73, 168.32];
+countryData["Vatican City"] = [41.90, 12.45];
+countryData["Venezuela"] = [10.48, -66.90];
+countryData["Vietnam"] = [21.02, 105.83];
+countryData["Yemen"] = [15.36, 44.19];
+countryData["Zambia"] = [-15.38, 28.35];
+countryData["Zimbabwe"] = [-17.82, 31.05];
 
 // USER TRACKING
 function trackPackage() {
