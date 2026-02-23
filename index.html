@@ -17,9 +17,8 @@
     <div class="hero">
         <h1>Track Your Shipment</h1>
         <p>Enter your tracking number to see real-time updates</p>
-        
         <div class="search-box">
-            <input type="text" id="trackInput" placeholder="Enter Tracking Number (e.g., TRK123456)" maxlength="20">
+            <input type="text" id="trackInput" placeholder="Enter Tracking Number (e.g., TRK123456)">
             <button onclick="trackPackage()" class="btn-primary">Track Now</button>
         </div>
     </div>
@@ -35,73 +34,40 @@
 
         <div class="info-sections">
             <div class="info-card sender-card">
-                <div class="card-header">
-                    <div class="icon">📤</div>
-                    <h3>Sender Information</h3>
-                </div>
+                <div class="card-header"><div class="icon">📤</div><h3>Sender Information</h3></div>
                 <div class="card-body">
-                    <div class="info-row">
-                        <label>Name</label>
-                        <p id="sName"></p>
-                    </div>
-                    <div class="info-row">
-                        <label>Country</label>
-                        <p id="sCountry"></p>
-                    </div>
-                    <div class="info-row">
-                        <label>Address</label>
-                        <p id="sAddress"></p>
-                    </div>
+                    <div class="info-row"><label>Name</label><p id="sName"></p></div>
+                    <div class="info-row"><label>Country</label><p id="sCountry"></p></div>
+                    <div class="info-row"><label>City</label><p id="sCity"></p></div>
+                    <div class="info-row"><label>Address</label><p id="sAddress"></p></div>
                 </div>
             </div>
 
             <div class="info-card receiver-card">
-                <div class="card-header">
-                    <div class="icon">📥</div>
-                    <h3>Receiver Information</h3>
-                </div>
+                <div class="card-header"><div class="icon">📥</div><h3>Receiver Information</h3></div>
                 <div class="card-body">
-                    <div class="info-row">
-                        <label>Name</label>
-                        <p id="rName"></p>
-                    </div>
-                    <div class="info-row">
-                        <label>Country</label>
-                        <p id="rCountry"></p>
-                    </div>
-                    <div class="info-row">
-                        <label>Address</label>
-                        <p id="rAddress"></p>
-                    </div>
+                    <div class="info-row"><label>Name</label><p id="rName"></p></div>
+                    <div class="info-row"><label>Country</label><p id="rCountry"></p></div>
+                    <div class="info-row"><label>City</label><p id="rCity"></p></div>
+                    <div class="info-row"><label>Address</label><p id="rAddress"></p></div>
                 </div>
             </div>
 
             <div class="info-card timeline-card">
-                <div class="card-header">
-                    <div class="icon">📅</div>
-                    <h3>Shipment Timeline</h3>
-                </div>
+                <div class="card-header"><div class="icon">📅</div><h3>Shipment Timeline</h3></div>
                 <div class="card-body">
-                    <div class="info-row">
-                        <label>Departure Date</label>
-                        <p id="depDate"></p>
-                    </div>
-                    <div class="info-row">
-                        <label>Estimated Arrival</label>
-                        <p id="estDate"></p>
-                    </div>
-                    <div class="info-row">
-                        <label>Current Status</label>
-                        <p id="curStatus" class="status-text"></p>
-                    </div>
+                    <div class="info-row"><label>Departure Date</label><p id="depDate"></p></div>
+                    <div class="info-row"><label>Estimated Arrival</label><p id="estDate"></p></div>
+                    <div class="info-row"><label>Current Status</label><p id="curStatus" class="status-text"></p></div>
+                    <div class="info-row hidden" id="stopReasonRow"><label>🛑 Stop Reason</label><p id="stopReasonDisplay" style="color:#ef4444;font-weight:bold;"></p></div>
                 </div>
             </div>
         </div>
 
         <div class="map-section">
-            <h3>📍 Shipment Route Map</h3>
+            <h3>📍 Live Shipment Map</h3>
             <div id="map"></div>
-            <p class="map-note">Map shows approximate route between sender and receiver countries</p>
+            <p class="map-note">Real-time tracking from sender to receiver</p>
         </div>
     </div>
 

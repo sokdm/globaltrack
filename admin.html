@@ -15,15 +15,12 @@
             <div class="login-logo">🔐</div>
             <h2>Admin Access</h2>
             <p>Authorized personnel only</p>
-            
             <div class="form-group">
                 <input type="email" id="adminEmail" placeholder="Admin Email">
                 <input type="password" id="adminPass" placeholder="Password">
             </div>
-            
             <button onclick="login()" class="btn-login">Sign In</button>
             <p id="loginError" class="error-msg"></p>
-            
             <a href="index.html" class="back-link">← Back to Tracking</a>
         </div>
     </div>
@@ -41,27 +38,10 @@
         <div class="admin-container">
             <!-- Stats -->
             <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon">📦</div>
-                    <div class="stat-info">
-                        <h4>Total Shipments</h4>
-                        <span id="totalCount">0</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">🚚</div>
-                    <div class="stat-info">
-                        <h4>In Transit</h4>
-                        <span id="transitCount">0</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">✅</div>
-                    <div class="stat-info">
-                        <h4>Delivered</h4>
-                        <span id="deliveredCount">0</span>
-                    </div>
-                </div>
+                <div class="stat-card"><div class="stat-icon">📦</div><div class="stat-info"><h4>Total Shipments</h4><span id="totalCount">0</span></div></div>
+                <div class="stat-card"><div class="stat-icon">🚚</div><div class="stat-info"><h4>In Transit</h4><span id="transitCount">0</span></div></div>
+                <div class="stat-card"><div class="stat-icon">🛑</div><div class="stat-info"><h4>Stopped</h4><span id="stoppedCount">0</span></div></div>
+                <div class="stat-card"><div class="stat-icon">✅</div><div class="stat-info"><h4>Delivered</h4><span id="deliveredCount">0</span></div></div>
             </div>
 
             <!-- CREATE/EDIT FORM -->
@@ -71,58 +51,53 @@
                     <button onclick="resetForm()" class="btn-secondary" id="cancelEdit" style="display:none;">Cancel Edit</button>
                 </div>
                 
-                <!-- Hidden field to store editing tracking number -->
                 <input type="hidden" id="editingTrackNum">
                 
                 <div class="form-grid">
                     <div class="form-block">
                         <h4>📤 Sender Details</h4>
-                        <input type="text" id="sName" placeholder="Sender Full Name *" required>
-                        <select id="sCountry" required>
-                            <option value="">Select Sender Country *</option>
-                        </select>
-                        <textarea id="sAddress" rows="3" placeholder="Sender Full Address *" required></textarea>
+                        <input type="text" id="sName" placeholder="Full Name *" required>
+                        <select id="sCountry" required><option value="">Select Country *</option></select>
+                        <input type="text" id="sCity" placeholder="City *" required>
+                        <textarea id="sAddress" rows="2" placeholder="Full Address *" required></textarea>
                     </div>
 
                     <div class="form-block">
                         <h4>📥 Receiver Details</h4>
-                        <input type="text" id="rName" placeholder="Receiver Full Name *" required>
-                        <select id="rCountry" required>
-                            <option value="">Select Receiver Country *</option>
-                        </select>
-                        <textarea id="rAddress" rows="3" placeholder="Receiver Full Address *" required></textarea>
+                        <input type="text" id="rName" placeholder="Full Name *" required>
+                        <select id="rCountry" required><option value="">Select Country *</option></select>
+                        <input type="text" id="rCity" placeholder="City *" required>
+                        <textarea id="rAddress" rows="2" placeholder="Full Address *" required></textarea>
                     </div>
 
                     <div class="form-block">
-                        <h4>📅 Shipment Timeline</h4>
-                        <div class="input-group">
-                            <label>Departure Date *</label>
-                            <input type="date" id="depDate" required>
-                        </div>
-                        <div class="input-group">
-                            <label>Estimated Arrival *</label>
-                            <input type="date" id="estDate" required>
-                        </div>
-                        <div class="input-group">
-                            <label>Current Status</label>
-                            <select id="shipStatus">
+                        <h4>📅 Timeline & Status</h4>
+                        <div class="input-group"><label>Departure Date *</label><input type="date" id="depDate" required></div>
+                        <div class="input-group"><label>Estimated Arrival *</label><input type="date" id="estDate" required></div>
+                        <div class="input-group"><label>Current Status</label>
+                            <select id="shipStatus" onchange="checkStopStatus()">
                                 <option value="Pending">Pending</option>
                                 <option value="In Transit">In Transit</option>
+                                <option value="Stopped">🛑 Stopped</option>
                                 <option value="Out for Delivery">Out for Delivery</option>
                                 <option value="Delivered">Delivered</option>
                                 <option value="Delayed">Delayed</option>
                             </select>
                         </div>
+                        <div id="stopReasonBox" class="input-group hidden">
+                            <label>🛑 Stop Reason (visible on map)</label>
+                            <input type="text" id="stopReason" placeholder="e.g., Customs clearance, Weather delay...">
+                        </div>
                     </div>
                 </div>
 
-                <button onclick="saveShipment()" class="btn-primary btn-large" id="saveBtn">✅ Generate Tracking & Save Shipment</button>
+                <button onclick="saveShipment()" class="btn-primary btn-large" id="saveBtn">✅ Generate Tracking & Save</button>
                 
                 <div id="generatedTracking" class="tracking-display hidden">
                     <h3>🎉 Shipment Created!</h3>
                     <p>Tracking Number:</p>
                     <div class="tracking-number-box" id="displayGeneratedNum"></div>
-                    <button onclick="copyTracking()" class="btn-secondary">Copy Tracking Number</button>
+                    <button onclick="copyTracking()" class="btn-secondary">Copy</button>
                 </div>
             </div>
 
@@ -141,13 +116,10 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="shipmentsList">
-                        </tbody>
+                        <tbody id="shipmentsList"></tbody>
                     </table>
                 </div>
-                <div id="emptyState" class="empty-state">
-                    <p>No shipments created yet</p>
-                </div>
+                <div id="emptyState" class="empty-state"><p>No shipments yet</p></div>
             </div>
         </div>
     </div>
