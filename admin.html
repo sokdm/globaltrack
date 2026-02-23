@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - GlobalTrack</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+    <!-- LOGIN SCREEN -->
+    <div id="loginScreen" class="login-overlay">
+        <div class="login-card">
+            <div class="login-logo">🔐</div>
+            <h2>Admin Access</h2>
+            <p>Authorized personnel only</p>
+            
+            <div class="form-group">
+                <input type="email" id="adminEmail" placeholder="Admin Email">
+                <input type="password" id="adminPass" placeholder="Password">
+            </div>
+            
+            <button onclick="login()" class="btn-login">Sign In</button>
+            <p id="loginError" class="error-msg"></p>
+            
+            <a href="index.html" class="back-link">← Back to Tracking</a>
+        </div>
+    </div>
+
+    <!-- ADMIN DASHBOARD -->
+    <div id="adminDashboard" class="hidden">
+        <nav class="admin-nav">
+            <div class="nav-brand">📦 GlobalTrack Admin</div>
+            <div class="nav-actions">
+                <span>Admin</span>
+                <button onclick="logout()" class="btn-logout">Logout</button>
+            </div>
+        </nav>
+
+        <div class="admin-container">
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-info">
+                        <h4>Total Shipments</h4>
+                        <span id="totalCount">0</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🚚</div>
+                    <div class="stat-info">
+                        <h4>In Transit</h4>
+                        <span id="transitCount">0</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-info">
+                        <h4>Delivered</h4>
+                        <span id="deliveredCount">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CREATE/EDIT FORM -->
+            <div class="form-section">
+                <div class="section-header">
+                    <h2 id="formTitle">Create New Shipment</h2>
+                    <button onclick="resetForm()" class="btn-secondary" id="cancelEdit" style="display:none;">Cancel Edit</button>
+                </div>
+                
+                <!-- Hidden field to store editing tracking number -->
+                <input type="hidden" id="editingTrackNum">
+                
+                <div class="form-grid">
+                    <div class="form-block">
+                        <h4>📤 Sender Details</h4>
+                        <input type="text" id="sName" placeholder="Sender Full Name *" required>
+                        <select id="sCountry" required>
+                            <option value="">Select Sender Country *</option>
+                        </select>
+                        <textarea id="sAddress" rows="3" placeholder="Sender Full Address *" required></textarea>
+                    </div>
+
+                    <div class="form-block">
+                        <h4>📥 Receiver Details</h4>
+                        <input type="text" id="rName" placeholder="Receiver Full Name *" required>
+                        <select id="rCountry" required>
+                            <option value="">Select Receiver Country *</option>
+                        </select>
+                        <textarea id="rAddress" rows="3" placeholder="Receiver Full Address *" required></textarea>
+                    </div>
+
+                    <div class="form-block">
+                        <h4>📅 Shipment Timeline</h4>
+                        <div class="input-group">
+                            <label>Departure Date *</label>
+                            <input type="date" id="depDate" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Estimated Arrival *</label>
+                            <input type="date" id="estDate" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Current Status</label>
+                            <select id="shipStatus">
+                                <option value="Pending">Pending</option>
+                                <option value="In Transit">In Transit</option>
+                                <option value="Out for Delivery">Out for Delivery</option>
+                                <option value="Delivered">Delivered</option>
+                                <option value="Delayed">Delayed</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="saveShipment()" class="btn-primary btn-large" id="saveBtn">✅ Generate Tracking & Save Shipment</button>
+                
+                <div id="generatedTracking" class="tracking-display hidden">
+                    <h3>🎉 Shipment Created!</h3>
+                    <p>Tracking Number:</p>
+                    <div class="tracking-number-box" id="displayGeneratedNum"></div>
+                    <button onclick="copyTracking()" class="btn-secondary">Copy Tracking Number</button>
+                </div>
+            </div>
+
+            <!-- Shipments Table -->
+            <div class="list-section">
+                <h2>📋 All Shipments (Click to Edit)</h2>
+                <div class="table-container">
+                    <table id="shipmentsTable">
+                        <thead>
+                            <tr>
+                                <th>Tracking #</th>
+                                <th>Sender</th>
+                                <th>Receiver</th>
+                                <th>Route</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="shipmentsList">
+                        </tbody>
+                    </table>
+                </div>
+                <div id="emptyState" class="empty-state">
+                    <p>No shipments created yet</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Package Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">📦 GlobalTrack</div>
+        <a href="admin.html" class="nav-admin">Admin Portal</a>
+    </nav>
+
+    <div class="hero">
+        <h1>Track Your Shipment</h1>
+        <p>Enter your tracking number to see real-time updates</p>
+        
+        <div class="search-box">
+            <input type="text" id="trackInput" placeholder="Enter Tracking Number (e.g., TRK123456)" maxlength="20">
+            <button onclick="trackPackage()" class="btn-primary">Track Now</button>
+        </div>
+    </div>
+
+    <div id="result" class="container hidden">
+        <div class="tracking-header">
+            <div class="tracking-number">
+                <span>Tracking Number</span>
+                <strong id="displayTrackNum"></strong>
+            </div>
+            <div class="status-badge" id="statusBadge"></div>
+        </div>
+
+        <div class="info-sections">
+            <div class="info-card sender-card">
+                <div class="card-header">
+                    <div class="icon">📤</div>
+                    <h3>Sender Information</h3>
+                </div>
+                <div class="card-body">
+                    <div class="info-row">
+                        <label>Name</label>
+                        <p id="sName"></p>
+                    </div>
+                    <div class="info-row">
+                        <label>Country</label>
+                        <p id="sCountry"></p>
+                    </div>
+                    <div class="info-row">
+                        <label>Address</label>
+                        <p id="sAddress"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card receiver-card">
+                <div class="card-header">
+                    <div class="icon">📥</div>
+                    <h3>Receiver Information</h3>
+                </div>
+                <div class="card-body">
+                    <div class="info-row">
+                        <label>Name</label>
+                        <p id="rName"></p>
+                    </div>
+                    <div class="info-row">
+                        <label>Country</label>
+                        <p id="rCountry"></p>
+                    </div>
+                    <div class="info-row">
+                        <label>Address</label>
+                        <p id="rAddress"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card timeline-card">
+                <div class="card-header">
+                    <div class="icon">📅</div>
+                    <h3>Shipment Timeline</h3>
+                </div>
+                <div class="card-body">
+                    <div class="info-row">
+                        <label>Departure Date</label>
+                        <p id="depDate"></p>
+                    </div>
+                    <div class="info-row">
+                        <label>Estimated Arrival</label>
+                        <p id="estDate"></p>
+                    </div>
+                    <div class="info-row">
+                        <label>Current Status</label>
+                        <p id="curStatus" class="status-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-section">
+            <h3>📍 Shipment Route Map</h3>
+            <div id="map"></div>
+            <p class="map-note">Map shows approximate route between sender and receiver countries</p>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
